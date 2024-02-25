@@ -159,6 +159,23 @@ fi
 replaceVendorPackageNameInFile "src/DependencyInjection/${SBB_BUNDLE_VENDOR_NAME}${SBB_BUNDLE_PACKAGE_NAME}Extension.php"
 
 
+fxTitle "Checking tests/..."
+if [ ! -d "${PROJECT_DIR}tests" ]; then
+
+  fxInfo "##${PROJECT_DIR}tests## folder not found. Creating..."
+  mkdir tests
+  cd tests
+  getTemplateFile tests/BundleTest.php
+  cd ..
+
+else
+
+  fxOK "tests found, nothing to do"
+fi
+
+replaceVendorPackageNameInFile "tests/BundleTest.php"
+
+
 fxTitle "Checking scripts/symfony-bundle-tester.sh..."
 if [ ! -f "${PROJECT_DIR}scripts/symfony-bundle-tester.sh" ]; then
 
