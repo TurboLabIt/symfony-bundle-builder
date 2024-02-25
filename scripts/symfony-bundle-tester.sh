@@ -6,7 +6,7 @@ SCRIPT_TITLE="🧪 Symfony Bundle Tester"
 if [ -f "${SBB_INSTALL_DIR}scripts/symfony-bundle-script-begin.sh" ]; then
   source "${SBB_INSTALL_DIR}scripts/symfony-bundle-script-begin.sh"
 else
-  source <(curl -s "${SBB_RAW_REPO_URL}script/symfony-bundle-script-begin.sh")
+  source <(curl -s "${SBB_RAW_REPO_URL}scripts/symfony-bundle-script-begin.sh")
 fi
 
 
