@@ -78,7 +78,7 @@ function replaceVendorPackageNameInFile()
   sed -i "s|myvendorname/mypackagename|${SBB_BUNDLE_VENDOR_NAME,,}/${SBB_BUNDLE_PACKAGE_NAME,,}|g" "$1"
   sed -i "s|MyVendorName\\\\\\\\MyPackageName|${SBB_BUNDLE_VENDOR_NAME}\\\\\\\\${SBB_BUNDLE_PACKAGE_NAME}|g" "$1"
 
-  sed -i "s|MyVendorName\\\\\\MyPackageName|${SBB_BUNDLE_VENDOR_NAME}\\\\\\${SBB_BUNDLE_PACKAGE_NAME}|g" "$1"
+  sed -i "s|MyVendorName\\\\MyPackageName|${SBB_BUNDLE_VENDOR_NAME}\\\\${SBB_BUNDLE_PACKAGE_NAME}|g" "$1"
   sed -i "s|MyVendorNameMyPackageName|${SBB_BUNDLE_VENDOR_NAME}${SBB_BUNDLE_PACKAGE_NAME}|g" "$1"
 
   sed -i "s|MyDeveloperName|${SBB_DEVELOPER_NAME}|g" "$1"
