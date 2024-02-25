@@ -2,6 +2,8 @@
 # 🛑 Don't run this script directly! 📚 RTFM: https://github.com/TurboLabIt/symfony-bundle-builder/blob/main/README.md
 
 SCRIPT_TITLE="🧪 Symfony Bundle Tester"
+SBB_INSTALL_DIR=/usr/local/turbolab.it/symfony-bundle-builder/
+SBB_RAW_REPO_URL=https://raw.githubusercontent.com/TurboLabIt/symfony-bundle-builder/main/
 
 if [ -f "${SBB_INSTALL_DIR}scripts/symfony-bundle-script-begin.sh" ]; then
   source "${SBB_INSTALL_DIR}scripts/symfony-bundle-script-begin.sh"
