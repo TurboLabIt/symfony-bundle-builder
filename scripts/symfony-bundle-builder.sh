@@ -64,9 +64,9 @@ fxOK "Got it, ##$SBB_DEVELOPER_EMAIL##"
 
 
 fxTitle "Looking for composer.json..."
-if [ ! -f "${PROJECT_DIR}composer.json" ]; then
+if [ ! -f "composer.json" ]; then
 
-  fxInfo "##${PROJECT_DIR}composer.json## not found. Downloading..."
+  fxInfo "composer.json not found. Downloading..."
   getTemplateFile "composer.json"
 
 else
@@ -74,7 +74,7 @@ else
   fxOK "composer.json found, nothing to do"
 fi
 
-replaceVendorPackageNameInFile ${PROJECT_DIR}composer.json
+replaceVendorPackageNameInFile "composer.json"
 
 
 fxTitle "Running composer..."
@@ -84,9 +84,9 @@ rm -rf composer.lock
 
 
 fxTitle "Looking for a .gitignore..."
-if [ ! -f "${PROJECT_DIR}.gitignore" ]; then
+if [ ! -f ".gitignore" ]; then
 
-  fxInfo "##${PROJECT_DIR}.gitignore## not found. Downloading..."
+  fxInfo ".gitignore not found. Downloading..."
   curl -O https://raw.githubusercontent.com/TurboLabIt/webdev-gitignore/master/.gitignore
 
 else
@@ -97,39 +97,25 @@ fi
 
 fxTitle "Building the bundle structure..."
 ## 📚 https://symfony.com/doc/current/bundles.html#bundle-directory-structure
-for DIR_NAME in assets config public templates translations scripts; do
+for DIR_NAME in assets config public src/Service src/DependencyInjection templates translations scripts tests; do
 
-  if [ ! -d "${PROJECT_DIR}${DIR_NAME}" ]; then
+  if [ ! -d "${DIR_NAME}" ]; then
 
-    fxInfo "##${PROJECT_DIR}${DIR_NAME}## folder not found. Creating..."
-    mkdir "${PROJECT_DIR}${DIR_NAME}"
+    fxInfo "##${DIR_NAME}## folder not found. Creating..."
+    mkdir -p "${DIR_NAME}"
 
   else
 
-    fxOK "${DIR_NAME} found, nothing to do"
+    fxOK "##${DIR_NAME}## folder found, nothing to do"
   fi
 
 done
 
 
-fxTitle "Checking the main Bundle file..."
-if [ ! -f "${PROJECT_DIR}*Bundle.php" ]; then
+fxTitle "Checking services.yaml..."
+if [ ! -f "config/services.yaml" ]; then
 
-  fxInfo "No Bundle file found. Downloading..."
-  getTemplateFile MyVendorNameMyPackageNameBundle.php "${SBB_BUNDLE_VENDOR_NAME}${SBB_BUNDLE_PACKAGE_NAME}Bundle.php"
-
-else
-
-  fxOK "src found, nothing to do"
-fi
-
-replaceVendorPackageNameInFile "${SBB_BUNDLE_VENDOR_NAME}${SBB_BUNDLE_PACKAGE_NAME}Bundle.php"
-
-
-fxTitle "Checking config/..."
-if [ ! -f "${PROJECT_DIR}config/services.yaml" ]; then
-
-  fxInfo "##${PROJECT_DIR}config/services.yaml## not found. Downloading..."
+  fxInfo "services.yaml not found. Downloading..."
   cd config
   getTemplateFile config/services.yaml
   cd ..
@@ -142,45 +128,10 @@ fi
 replaceVendorPackageNameInFile "config/services.yaml"
 
 
-fxTitle "Checking src/DependencyInjection/..."
-if [ ! -d "${PROJECT_DIR}src/DependencyInjection" ]; then
+fxTitle "Checking symfony-bundle-tester.sh..."
+if [ ! -f "scripts/symfony-bundle-tester.sh" ]; then
 
-  fxInfo "##${PROJECT_DIR}src/DependencyInjection## folder not found. Creating..."
-  mkdir -p src/Service
-  mkdir -p src/DependencyInjection
-  cd src/DependencyInjection
-  getTemplateFile src/DependencyInjection/MyVendorNameMyPackageNameExtension.php "${SBB_BUNDLE_VENDOR_NAME}${SBB_BUNDLE_PACKAGE_NAME}Extension.php"
-  cd ../..
-
-else
-
-  fxOK "src/DependencyInjection found, nothing to do"
-fi
-
-replaceVendorPackageNameInFile "src/DependencyInjection/${SBB_BUNDLE_VENDOR_NAME}${SBB_BUNDLE_PACKAGE_NAME}Extension.php"
-
-
-fxTitle "Checking tests/..."
-if [ ! -d "${PROJECT_DIR}tests" ]; then
-
-  fxInfo "##${PROJECT_DIR}tests## folder not found. Creating..."
-  mkdir tests
-  cd tests
-  getTemplateFile tests/BundleTest.php
-  cd ..
-
-else
-
-  fxOK "tests found, nothing to do"
-fi
-
-replaceVendorPackageNameInFile "tests/BundleTest.php"
-
-
-fxTitle "Checking scripts/symfony-bundle-tester.sh..."
-if [ ! -f "${PROJECT_DIR}scripts/symfony-bundle-tester.sh" ]; then
-
-  fxInfo "##${PROJECT_DIR}scripts/symfony-bundle-tester.sh## not found. Downloading..."
+  fxInfo "symfony-bundle-tester.sh not found. Downloading..."
   cd scripts
   getTemplateFile scripts/symfony-bundle-tester.sh
   cd ..
@@ -191,17 +142,55 @@ else
 fi
 
 
-## dependencies
-fxTitle "Looking for Symfony Framework..."
-if [ ! -d "${PROJECT_DIR}vendor/symfony/framework-bundle" ]; then
+fxTitle "Checking the main Bundle file..."
+BUNDLE_FILENAME=${SBB_BUNDLE_VENDOR_NAME}${SBB_BUNDLE_PACKAGE_NAME}Bundle.php
+if [ ! -f "src/${BUNDLE_FILENAME}" ]; then
 
-  fxInfo "Symfony Framework not found. Composer req it now..."
-  symfony composer require symfony/framework-bundle --dev
+  fxInfo "${BUNDLE_FILENAME} not found. Downloading..."
+  cd src
+  getTemplateFile src/MyVendorNameMyPackageNameBundle.php "${BUNDLE_FILENAME}"
+  cd ..
 
 else
 
-  fxOK "Symfony Framework is already installed"
+  fxOK "${BUNDLE_FILENAME} found, nothing to do"
 fi
+
+replaceVendorPackageNameInFile "src/${BUNDLE_FILENAME}"
+
+
+fxTitle "Checking the configuration-loading file (DependencyInjection/)..."
+DI_FILENAME=${SBB_BUNDLE_VENDOR_NAME}${SBB_BUNDLE_PACKAGE_NAME}Extension.php
+if [ ! -f "src/DependencyInjection/${DI_FILENAME}" ]; then
+
+  fxInfo "${DI_FILENAME} not found. Downloading..."
+  cd src/DependencyInjection
+  getTemplateFile src/DependencyInjection/MyVendorNameMyPackageNameExtension.php "${DI_FILENAME}"
+  cd ../..
+
+else
+
+  fxOK "${DI_FILENAME} found, nothing to do"
+fi
+
+replaceVendorPackageNameInFile "src/DependencyInjection/${DI_FILENAME}"
+
+
+fxTitle "Checking BundleTest.php..."
+if [ ! -f "tests/BundleTest.php" ]; then
+
+  fxInfo "BundleTest.php not found. Downloading..."
+  cd tests
+  getTemplateFile tests/BundleTest.php
+  cd ..
+
+else
+
+  fxOK "BundleTest.php found, nothing to do"
+fi
+
+replaceVendorPackageNameInFile "tests/BundleTest.php"
+
 
 rm -rf composer.lock
 

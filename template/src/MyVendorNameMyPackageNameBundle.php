@@ -1,6 +1,6 @@
 <?php
 /**
- * 🪄 Based on https://github.com/TurboLabIt/symfony-bundle-builder/blob/main/template/MyVendorNameMyPackageNameBundle.php
+ * 🪄 Based on https://github.com/TurboLabIt/symfony-bundle-builder/blob/main/template/src/MyVendorNameMyPackageNameBundle.php
  *
  * 📚 Usage example (customize with your own):
  *
