@@ -54,7 +54,6 @@ fi
 
 function getTemplateFile()
 {
-  fxCatastrophicError "${SBB_RAW_REPO_URL}template/$1"
   if [ -f "${SBB_INSTALL_DIR}template/$1" ] && [ -z "$2" ]; then
 
     cp "${SBB_INSTALL_DIR}template/$1" .
@@ -65,11 +64,11 @@ function getTemplateFile()
 
   elif [ ! -f "${SBB_INSTALL_DIR}template/$1" ] && [ -z "$2" ]; then
 
-    curl -O <(curl -s "${SBB_RAW_REPO_URL}template/$1")
+    curl -O "${SBB_RAW_REPO_URL}template/$1"
 
   else
 
-    curl -o "$2" <(curl -s "${SBB_RAW_REPO_URL}template/$1")
+    curl -o "$2" "${SBB_RAW_REPO_URL}template/$1"
   fi
 }
 
