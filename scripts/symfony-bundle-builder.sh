@@ -77,6 +77,7 @@ fi
 replaceVendorPackageNameInFile ${PROJECT_DIR}composer.json
 
 
+fxTitle "Running composer..."
 symfony local:php:refresh
 symfony composer update
 rm -rf composer.lock

@@ -26,6 +26,7 @@ if [ ! -z ${REQ_CHECK_FAILURE} ]; then
 fi
 
 
+fxTitle "Running composer..."
 symfony local:php:refresh
 symfony composer update
 rm -rf composer.lock
