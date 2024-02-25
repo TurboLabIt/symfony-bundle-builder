@@ -192,7 +192,4 @@ fi
 replaceVendorPackageNameInFile "tests/BundleTest.php"
 
 
-rm -rf composer.lock
-
-
 fxEndFooter
