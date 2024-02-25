@@ -97,7 +97,7 @@ fi
 
 fxTitle "Building the bundle structure..."
 ## 📚 https://symfony.com/doc/current/bundles.html#bundle-directory-structure
-for DIR_NAME in assets config public src/Service src/DependencyInjection templates translations scripts tests; do
+for DIR_NAME in assets config public src/Service templates translations scripts tests; do
 
   if [ ! -d "${DIR_NAME}" ]; then
 
@@ -157,23 +157,6 @@ else
 fi
 
 replaceVendorPackageNameInFile "src/${BUNDLE_FILENAME}"
-
-
-fxTitle "Checking the configuration-loading file (DependencyInjection/)..."
-DI_FILENAME=${SBB_BUNDLE_VENDOR_NAME}${SBB_BUNDLE_PACKAGE_NAME}Extension.php
-if [ ! -f "src/DependencyInjection/${DI_FILENAME}" ]; then
-
-  fxInfo "${DI_FILENAME} not found. Downloading..."
-  cd src/DependencyInjection
-  getTemplateFile src/DependencyInjection/MyVendorNameMyPackageNameExtension.php "${DI_FILENAME}"
-  cd ../..
-
-else
-
-  fxOK "${DI_FILENAME} found, nothing to do"
-fi
-
-replaceVendorPackageNameInFile "src/DependencyInjection/${DI_FILENAME}"
 
 
 fxTitle "Checking BundleTest.php..."
