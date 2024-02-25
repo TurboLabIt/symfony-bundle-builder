@@ -1,6 +1,6 @@
 ## Symfony Bundle Builder https://github.com/TurboLabIt/symfony-bundle-builder
 # 🛑 Don't run this script directly! 📚 RTFM: https://github.com/TurboLabIt/symfony-bundle-builder/blob/main/README.md
-fxCatastrophicError "${SBB_RAW_REPO_URL}"
+
 SCRIPT_TITLE="📦 Symfony Bundle Builder"
 
 if [ -f "${SBB_INSTALL_DIR}scripts/symfony-bundle-script-begin.sh" ]; then

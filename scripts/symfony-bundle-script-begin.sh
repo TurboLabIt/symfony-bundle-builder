@@ -54,6 +54,7 @@ fi
 
 function getTemplateFile()
 {
+  fxCatastrophicError ""${SBB_RAW_REPO_URL}template/$1"
   if [ -f "${SBB_INSTALL_DIR}template/$1" ] && [ -z "$2" ]; then
 
     cp "${SBB_INSTALL_DIR}template/$1" .
