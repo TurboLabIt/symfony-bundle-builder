@@ -1,12 +1,5 @@
-## Startup procedure to build a Symfony Bundle
-# https://github.com/TurboLabIt/symfony-bundle-builder/blob/master/scripts/symfony-bundle-builder.sh
-#
-# How to:
-#
-# 1. Copy the "starter" script to your project directory with:
-#   curl -Lo scripts/symfony-bundle-builder.sh https://raw.githubusercontent.com/TurboLabIt/symfony-bundle-builder/master/my-app-template/scripts/symfony-bundle-builder.sh && sudo chmod u=rwx,go=rx scripts/*.sh
-#
-# 1. You should now git commit your copy
+## Symfony Bundle Builder https://github.com/TurboLabIt/symfony-bundle-builder
+# 🛑 Don't run this script directly! 📚 RTFM: https://github.com/TurboLabIt/symfony-bundle-builder/blob/main/README.md
 
 SCRIPT_TITLE="📦 Symfony Bundle Builder"
 

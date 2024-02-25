@@ -1,3 +1,6 @@
+## Symfony Bundle Builder https://github.com/TurboLabIt/symfony-bundle-builder
+# 🛑 Don't run this script directly! 📚 RTFM: https://github.com/TurboLabIt/symfony-bundle-builder/blob/main/README.md
+
 ## https://github.com/TurboLabIt/bash-fx
 if [ -f "/usr/local/turbolab.it/bash-fx/bash-fx.sh" ]; then
   source "/usr/local/turbolab.it/bash-fx/bash-fx.sh"

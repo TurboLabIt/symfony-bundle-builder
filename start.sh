@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+## Symfony Bundle Builder https://github.com/TurboLabIt/symfony-bundle-builder
+# 📚 RTFM: https://github.com/TurboLabIt/symfony-bundle-builder/blob/main/README.md
+
 clear
 
 SBB_INSTALL_DIR=/usr/local/turbolab.it/symfony-bundle-builder/
