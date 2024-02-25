@@ -26,12 +26,12 @@ function checkReqCommand()
 {
   if [ -z $(command -v $1) ]; then
 
-    echo "🛑 $1 is missing!"
+    fxWarning "$1 is missing!"
     REQ_CHECK_FAILURE=1
 
   else
 
-    echo "✅ $1 is installed"
+    fxOK "$1 is installed"
   fi
 }
 
@@ -41,11 +41,11 @@ checkReqCommand symfony
 
 if [ -s "${PROJECT_DIR}.php-version" ]; then
 
-  echo "✅ .php-version exists. PHP version set to ##$(cat .php-version)##"
+  fxOK ".php-version exists. PHP version set to ##$(cat .php-version)##"
 
 else
 
-  echo "🛑 ##${PROJECT_DIR}.php-version## is missing or empty! It must contain the PHP version to use. This will build it for you:"
+  fxWarning "##${PROJECT_DIR}.php-version## is missing or empty! It must contain the PHP version to use. This will build it for you:"
   fxMessage "echo '8.3' > .php-version"
   touch .php-version
   REQ_CHECK_FAILURE=1

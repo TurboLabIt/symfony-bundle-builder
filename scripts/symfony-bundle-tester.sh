@@ -12,11 +12,11 @@ fi
 
 if [ -s "${PROJECT_DIR}composer.json" ]; then
 
-  echo "✅ composer.json exists."
+  fxOK "composer.json exists"
 
 else
 
-  echo "🛑 composer.json is missing or empty!"
+  fxWarning "composer.json is missing or empty!"
   REQ_CHECK_FAILURE=1
 fi
 
