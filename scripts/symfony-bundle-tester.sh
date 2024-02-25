@@ -10,7 +10,7 @@ else
 fi
 
 
-if [ -s "${PROJECT_DIR}composer.json" ]; then
+if [ -s "composer.json" ]; then
 
   fxOK "composer.json exists"
 
@@ -33,30 +33,15 @@ rm -rf composer.lock
 
 
 fxTitle "Looking for phpunit.xml.dist..."
-if [ ! -f "${PROJECT_DIR}phpunit.xml.dist" ]; then
+if [ ! -f "phpunit.xml.dist" ]; then
 
-  fxInfo "##${PROJECT_DIR}phpunit.xml.dist## not found. Downloading..."
+  fxInfo "phpunit.xml.dist not found. Downloading..."
   curl -O https://raw.githubusercontent.com/TurboLabIt/webstackup/master/script/php-pages/phpunit.xml.dist
 
 else
 
   fxOK "phpunit.xml.dist found, nothing to do"
 fi
-
-
-fxTitle "Looking for PHPUnit..."
-if [ ! -d "${PROJECT_DIR}vendor/phpunit" ]; then
-
-  fxInfo "PHPUnit not found. Composer req it now..."
-  symfony composer require  phpunit/phpunit --dev
-
-else
-
-  fxOK "PHPUnit is already installed"
-fi
-
-
-rm -rf composer.lock
 
 
 fxTitle "🔬 Checking input..."
@@ -69,7 +54,7 @@ fi
 
 fxTitle "👢 Bootstrap"
 BOOTSTRAP_FILE=${PROJECT_DIR}tests/bootstrap.php
-fxInfo "phpunit bootstrap file set to ##${BOOTSTRAP_FILE}##"
+fxInfo "PHPUnit bootstrap file set to ##${BOOTSTRAP_FILE}##"
 
 if [ ! -f "${BOOTSTRAP_FILE}" ]; then
 
