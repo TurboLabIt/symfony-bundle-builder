@@ -75,9 +75,8 @@ else
 fi
 
 
+fxTitle "Checking root-level files..."
 for ROOT_LEVEL_FILE in composer.json .env .env.dev.local readme.md; do
-
-  fxTitle "Checking ${ROOT_LEVEL_FILE}..."
 
   if [ ! -f "${ROOT_LEVEL_FILE}" ]; then
 
@@ -164,9 +163,8 @@ fi
 replaceVendorPackageNameInFile "src/${BUNDLE_FILENAME}"
 
 
+fxTitle "Checking test files..."
 for TEST_FILE in BundleTest.php BaseT.php; do
-
-  fxTitle "Checking ${TEST_FILE}..."
 
   if [ ! -f "tests/${TEST_FILE}" ]; then
 
