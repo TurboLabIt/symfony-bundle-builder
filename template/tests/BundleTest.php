@@ -16,8 +16,20 @@ use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Depends;
 
 
-class BundleTest extends WebTestCase
+class BundleTest extends BaseT
 {
+    const TESTED_SERVICE_FQN = 'MyVendorName\MyPackageNameBundle\MyServiceName';
+
+    public function testInstance() : MyServiceName { return $this->getInstance(); }
+
+
+    #[Depends('testInstance')]
+    public function testSendMessageToChannel(MyServiceName $myService)
+    {
+        // ...
+    }
+    
+    
     public static function somethingProvider()
     {
         yield ['/aaa', '/bbb', '/ccc'];
@@ -29,12 +41,5 @@ class BundleTest extends WebTestCase
     {
         $this->assertNotEmpty($value);
         return $value;
-    }
-
-
-    #[Depends('testSomething')]
-    public function testSomethingDepending($value)
-    {
-        $this->assertNotEmpty($value);
     }
 }
