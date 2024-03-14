@@ -24,6 +24,8 @@
   },
   "require-dev": {
     "symfony/framework-bundle": "@stable",
+    "symfony/dotenv": "@stable",
+    "symfony/yaml": "@stable",
     "phpunit/phpunit": "@stable"
   }
 }
