@@ -63,26 +63,6 @@ done
 fxOK "Got it, ##$SBB_DEVELOPER_EMAIL##"
 
 
-fxTitle "Looking for composer.json..."
-if [ ! -f "composer.json" ]; then
-
-  fxInfo "composer.json not found. Downloading..."
-  getTemplateFile "composer.json"
-
-else
-
-  fxOK "composer.json found, nothing to do"
-fi
-
-replaceVendorPackageNameInFile "composer.json"
-
-
-fxTitle "Running composer..."
-symfony local:php:refresh
-symfony composer update
-rm -rf composer.lock
-
-
 fxTitle "Looking for a .gitignore..."
 if [ ! -f ".gitignore" ]; then
 
@@ -93,6 +73,31 @@ else
 
   fxOK ".gitignore found, nothing to do"
 fi
+
+
+for ROOT_LEVEL_FILE in composer.json .env .env.dev.local readme.md; do
+
+  fxTitle "Checking ${ROOT_LEVEL_FILE}..."
+
+  if [ ! -f "${ROOT_LEVEL_FILE}" ]; then
+
+    fxInfo "##${ROOT_LEVEL_FILE}## file not found. Downloading..."
+    getTemplateFile "${ROOT_LEVEL_FILE}"
+
+  else
+
+    fxOK "${ROOT_LEVEL_FILE} found, nothing to do"
+  fi
+
+  replaceVendorPackageNameInFile ${ROOT_LEVEL_FILE}
+
+done
+
+
+fxTitle "Running composer..."
+symfony local:php:refresh
+symfony composer update
+rm -rf composer.lock
 
 
 fxTitle "Building the bundle structure..."
@@ -159,20 +164,25 @@ fi
 replaceVendorPackageNameInFile "src/${BUNDLE_FILENAME}"
 
 
-fxTitle "Checking BundleTest.php..."
-if [ ! -f "tests/BundleTest.php" ]; then
+for TEST_FILE in BundleTest.php BaseT.php; do
 
-  fxInfo "BundleTest.php not found. Downloading..."
-  cd tests
-  getTemplateFile tests/BundleTest.php
-  cd ..
+  fxTitle "Checking ${TEST_FILE}..."
 
-else
+  if [ ! -f "tests/${TEST_FILE}" ]; then
 
-  fxOK "BundleTest.php found, nothing to do"
-fi
+    fxInfo "##${TEST_FILE}## file not found. Downloading..."
+    cd tests
+    getTemplateFile tests/${TEST_FILE}
+    cd ..
 
-replaceVendorPackageNameInFile "tests/BundleTest.php"
+  else
+
+    fxOK "${TEST_FILE} found, nothing to do"
+  fi
+
+  replaceVendorPackageNameInFile "tests/${TEST_FILE}"
+
+done
 
 
 fxEndFooter
