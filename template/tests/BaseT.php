@@ -11,9 +11,15 @@
  */
 namespace MyVendorName\MyPackageNameBundle\tests;
 
+use PHPUnit\Framework\TestCase;
+use Symfony\Bundle\FrameworkBundle\FrameworkBundle;
+use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
+
 
 abstract class BaseT extends TestCase
 {
+    const TESTED_SERVICE_FQN = null;
+
     protected static KernelT $kernelT;
 
 
@@ -24,11 +30,12 @@ abstract class BaseT extends TestCase
     }
 
 
-    /*protected function tearDown(): void
+    protected function getInstance()
     {
-        self::ensureKernelShutdown();
-        static::$crawler = null;
-    }*/
+        $service = $this->getService(static::TESTED_SERVICE_FQN);
+        $this->assertInstanceOf(static::TESTED_SERVICE_FQN, $service);
+        return $service;
+    }
 
 
     protected static function getService(string $name)
@@ -43,19 +50,28 @@ abstract class BaseT extends TestCase
         }
 
         $container = static::$kernelT->getContainer();
-        $connector = $container->get($name);
-        return $connector;
+        $service = $container->get($name);
+        return $service;
     }
+
+
+
+
+    /*protected function tearDown(): void
+    {
+        self::ensureKernelShutdown();
+        static::$crawler = null;
+    }*/
 }
 
 
+//<editor-fold defaultstate="collapsed" desc="*** SYMFONY KERNEL ***">
 use Symfony\Component\HttpKernel\Kernel;
 use MyVendorName\MyPackageName\MyVendorNameMyPackageNameBundle;
 
 class KernelT extends Kernel
 {
     use MicroKernelTrait;
-
 
     public function registerBundles(): iterable
     {
@@ -65,3 +81,4 @@ class KernelT extends Kernel
         ];
     }
 }
+//</editor-fold>
