@@ -67,7 +67,7 @@ abstract class BaseT extends TestCase
 
 //<editor-fold defaultstate="collapsed" desc="*** SYMFONY KERNEL ***">
 use Symfony\Component\HttpKernel\Kernel;
-use MyVendorName\MyPackageName\MyVendorNameMyPackageNameBundle;
+use MyVendorName\MyPackageNameBundle\MyVendorNameMyPackageNameBundle;
 
 class KernelT extends Kernel
 {
