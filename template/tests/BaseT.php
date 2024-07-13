@@ -9,7 +9,7 @@
  *
  * 💡 "Replace all" the above and you're ready to go
  */
-namespace MyVendorName\MyPackageNameBundle\tests;
+namespace MyVendorName\MyPackageNameBundle\Tests;
 
 use PHPUnit\Framework\TestCase;
 use Symfony\Bundle\FrameworkBundle\FrameworkBundle;
