@@ -37,6 +37,7 @@ if [ ! -f "phpunit.xml.dist" ]; then
 
   fxInfo "phpunit.xml.dist not found. Downloading..."
   curl -O https://raw.githubusercontent.com/TurboLabIt/webstackup/master/script/php-pages/phpunit.xml.dist
+  sed -i 's|<!--file>tests/BundleTest.php</file-->|<file>tests/BundleTest.php</file>|g' "phpunit.xml.dist"
 
 else
 
