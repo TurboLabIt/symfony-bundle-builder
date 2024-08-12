@@ -1,6 +1,6 @@
-# [myvendorname/mypackagename](https://github.com/myvendorname/mypackagename)
+# [MyVendorName / MyPackageNameBundle](https://github.com/myvendorname/mypackagename)
 
-A new bundle for...
+A new Symfony Bundle for...
 
 
 ## 📦 Install it with composer
