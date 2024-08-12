@@ -3,12 +3,10 @@
   "description": "",
   "type": "symfony-bundle",
   "license": "CC-BY-4.0",
-  "authors": [
-    {
+    "authors": [{
       "name": "MyDeveloperName",
       "email": "MyDeveloperEmailAddress"
-    }
-  ],
+  }],
   "require": {
     "php": "^8"
   },
