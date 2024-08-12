@@ -1,14 +1,4 @@
 <?php
-/**
- * 🪄 Based on https://github.com/TurboLabIt/symfony-bundle-builder/blob/main/template/tests/BundleTest.php
- *
- * 📚 Usage example (customize with your own):
- *
- * - MyVendorName   ➡ TurboLabIt
- * - MyPackageName  ➡ BaseCommand
- *
- * 💡 "Replace all" the above and you're ready to go
- */
 namespace MyVendorName\MyPackageNameBundle\Tests;
 
 use PHPUnit\Framework\TestCase;

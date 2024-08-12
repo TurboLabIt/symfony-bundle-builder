@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 ## Symfony Bundle Tester https://github.com/TurboLabIt/symfony-bundle-builder
-# 📚 RTFM: https://github.com/TurboLabIt/symfony-bundle-builder/blob/main/README.md
 
 clear
 
