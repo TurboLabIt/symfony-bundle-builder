@@ -1,7 +1,6 @@
 <?php
 namespace MyVendorName\MyPackageNameBundle\Tests;
 
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Depends;
 
