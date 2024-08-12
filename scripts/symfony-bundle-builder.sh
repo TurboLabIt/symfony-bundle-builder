@@ -68,6 +68,9 @@ if [ ! -f ".gitignore" ]; then
 
   fxInfo ".gitignore not found. Downloading..."
   curl -O https://raw.githubusercontent.com/TurboLabIt/webdev-gitignore/master/.gitignore
+  ## the following files should be managed by scripts/symfony-bundle-tester.sh, unless you have special needs
+  echo 'phpunit.xml.dist*' >> .gitignore
+  echo 'tests/bootstrap.php' >> .gitignore
 
 else
 
